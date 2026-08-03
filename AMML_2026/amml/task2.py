@@ -88,7 +88,7 @@ def multitask_loss(
     reconstruction_weight: float,
     classification_weight: float,
 ) -> tuple[torch.Tensor, torch.Tensor, torch.Tensor, torch.Tensor]:
-    """Explicit Task 2 objective with comparable mean-scaled components."""
+   
 
     reconstruction_loss = F.binary_cross_entropy(reconstruction, images, reduction="mean")
     kl_loss = -0.5 * torch.mean(1 + logvar - mu.pow(2) - logvar.exp())
@@ -463,15 +463,14 @@ def _select_examples_by_classes(labels: np.ndarray, classes: list[int], per_clas
 
 
 def run_task2(config: ExperimentConfig) -> dict[str, Path]:
-    """Train and compare a baseline and class-weighted small-data model."""
+    #Train and compare a baseline and class-weighted small-data model.
 
     config.prepare_output_directories()
     config.validate_required_files()
     device = resolve_device(config.device)
     print(f"[Task 2] Device: {device}")
 
-    # The assignment prohibits Task 1's test dataset from Task 2. Only the
-    # holdout dataset is loaded below.
+
     dataset = load_assignment_dataset(config.holdout_dataset_path)
     distribution = class_distribution(dataset)
     split = stratified_three_way_split(
