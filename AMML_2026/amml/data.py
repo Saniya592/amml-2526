@@ -13,7 +13,7 @@ from torch.utils.data import ConcatDataset, DataLoader, Dataset, Subset, TensorD
 
 
 class IndexedTensorDataset(Dataset):
-    """Tensor image dataset that returns image, class label and global index."""
+    #Tensor image dataset that returns image, class label and global index.
 
     def __init__(self, images: torch.Tensor, labels: torch.Tensor):
         if len(images) != len(labels):
@@ -108,8 +108,8 @@ def _extract_images_labels(obj: Any) -> tuple[Any, Any]:
         return obj.tensors[0], obj.tensors[1]
 
     # The official files are commonly serialised as torch.utils.data.Subset
-    # objects wrapping torchvision.datasets.MNIST.  Preserve the subset indices
-    # rather than accidentally evaluating the complete underlying dataset.
+    # objects wrapping torchvision.datasets.MNIST.
+
     if isinstance(obj, Subset):
         try:
             base_images, base_labels = _extract_images_labels(obj.dataset)
@@ -129,7 +129,7 @@ def _extract_images_labels(obj: Any) -> tuple[Any, Any]:
         if image_key is not None and label_key is not None:
             return obj[image_key], obj[label_key]
 
-        # Some saved files wrap the actual dataset in a top-level key.
+        
         for key in ("dataset", "test_dataset", "holdout_dataset"):
             if key in obj:
                 return _extract_images_labels(obj[key])
@@ -194,7 +194,7 @@ def _standardise_labels(labels: Any) -> torch.Tensor:
 
 
 def load_assignment_dataset(path: Path) -> IndexedTensorDataset:
-    """Load the official serialized dataset with compatibility across PyTorch versions."""
+    #Load the official serialized dataset with compatibility across PyTorch versions.
 
     if not path.exists():
         raise FileNotFoundError(path)
