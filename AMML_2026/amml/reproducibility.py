@@ -8,10 +8,8 @@ import torch
 
 
 def seed_everything(seed: int, deterministic: bool = True) -> None:
-    """Seed Python, NumPy and PyTorch for reproducible paired experiments."""
-
-    # Limiting CPU threads avoids severe oversubscription in notebooks and CI.
-    # Users can override this with the AMML_TORCH_THREADS environment variable.
+    #Seed Python, NumPy and PyTorch for reproducible paired experiments.
+    
     thread_count = max(1, int(os.environ.get("AMML_TORCH_THREADS", "4")))
     torch.set_num_threads(thread_count)
 
@@ -23,8 +21,7 @@ def seed_everything(seed: int, deterministic: bool = True) -> None:
         torch.cuda.manual_seed_all(seed)
 
     if deterministic:
-        # ``warn_only=True`` prevents unsupported deterministic kernels from
-        # terminating an otherwise valid experiment.
+        # "warn_only=True" prevents unsupported deterministic kernels from terminating an otherwise valid experiment.
         torch.use_deterministic_algorithms(True, warn_only=True)
         if hasattr(torch.backends, "cudnn"):
             torch.backends.cudnn.benchmark = False
