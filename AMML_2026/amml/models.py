@@ -10,7 +10,7 @@ import torch.nn.functional as F
 
 
 class VariationalAutoencoder(nn.Module):
-    """Exact architecture supplied in the official assignment ``src/model.py``."""
+    #Exact architecture supplied in the official assignment "src/model.py"
 
     def __init__(self):
         super().__init__()
@@ -55,12 +55,9 @@ class VariationalAutoencoder(nn.Module):
 
 
 class MultiTaskVAEClassifier(nn.Module):
-    """Task 2 model: supplied VAE plus a small classification head.
-
-    The classifier consumes the deterministic posterior mean ``mu``. This
-    preserves a stable representation for classification while the decoder is
-    trained through the reparameterised latent sample.
-    """
+   
+#The classifier consumes the deterministic posterior mean "mu". This preserves a stable representation for classification while the decoder is trained through the reparameterised latent sample.
+    
 
     def __init__(self, dropout: float = 0.20):
         super().__init__()
