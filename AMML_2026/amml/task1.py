@@ -345,7 +345,7 @@ def _save_json(data: dict[str, Any], path: Path) -> None:
 
 
 def run_task1(config: ExperimentConfig) -> dict[str, Path]:
-    """Run the complete Task 1 evaluation without retraining supplied VAEs."""
+    
 
     config.prepare_output_directories()
     config.validate_required_files()
