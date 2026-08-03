@@ -35,7 +35,7 @@ def paired_tests(
     value_column: str,
     conditions: list[str] | None = None,
 ) -> pd.DataFrame:
-    """Paired t-tests and Wilcoxon tests with Holm correction."""
+    #Paired t-tests and Wilcoxon tests with Holm correction.
 
     if conditions is None:
         conditions = sorted(frame[condition_column].dropna().unique().tolist())
